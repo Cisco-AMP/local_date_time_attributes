@@ -14,7 +14,7 @@ module LocalDateTimeAttributes
     end
 
     def deserialize(value)
-      value
+      cast(value).to_local
     end
   end
 end

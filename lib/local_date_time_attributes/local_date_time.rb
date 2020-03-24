@@ -17,15 +17,8 @@ module LocalDateTimeAttributes
     private
     
     def from_local(date_time)
-      original_time_zone = Rails.config.time_zone
-      if date_time.respond_to? :in_time_zone
-        original_time_zone = date_time.in_time_zone.time_zone.name
-      elsif date_time.respond_to? :time_zone
-        original_time_zone = date_time.time_zone.name
-      else
-        raise ArgumentError "Unable to determine the timezone of #{date_time.inspect}"
-      end
-      ActiveSupport::TimeZone.new(original_time_zone).local_to_utc(date_time)
+      time_zone = ActiveRecord::Base.default_timezone == :UTC ? 'UTC' : Rails.configuration.time_zone
+      ActiveSupport::TimeZone.new(time_zone).local_to_utc(date_time)
     end
   end
 end
