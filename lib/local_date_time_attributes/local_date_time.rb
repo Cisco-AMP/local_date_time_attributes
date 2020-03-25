@@ -11,14 +11,16 @@ module LocalDateTimeAttributes
     # Returns a datetime in the timezone specified without changing the time
     def to_local(time_zone = Time.zone.try(:name))
       return if __getobj__.nil? || time_zone.nil?
-      ActiveSupport::TimeZone.new(time_zone).local_to_utc(__getobj__).in_time_zone(time_zone)
+      converted_timestamp = ActiveSupport::TimeZone.new(time_zone).local_to_utc(__getobj__)
+      converted_timestamp.in_time_zone(time_zone) if converted_timestamp.respond_to? :in_time_zone
     end
     
     private
     
     def from_local(date_time)
       return if date_time.nil?
-      ActiveSupport::TimeZone.new(active_record_timezone).local_to_utc(date_time).in_time_zone(active_record_timezone)
+      converted_timestamp = ActiveSupport::TimeZone.new(active_record_timezone).local_to_utc(date_time)
+      converted_timestamp.in_time_zone(active_record_timezone) if converted_timestamp.respond_to? :in_time_zone
     end
 
     def active_record_timezone

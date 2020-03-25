@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    local_date_time_attributes (0.1.0)
+    local_date_time_attributes (0.1.2)
       activerecord (>= 5.0)
       activesupport (>= 5.0)
 

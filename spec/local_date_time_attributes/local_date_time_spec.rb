@@ -8,6 +8,10 @@ describe LocalDateTimeAttributes::LocalDateTime do
 
   subject {LocalDateTimeAttributes::LocalDateTime.new(now)}
 
+  it 'handles nil' do
+    expect{LocalDateTimeAttributes::LocalDateTime.new(nil)}.to_not raise_exception
+  end
+
   context 'active_record default timezone is UTC' do
     before do
       allow_any_instance_of(LocalDateTimeAttributes::LocalDateTime).to receive(:active_record_timezone).and_return('UTC')
@@ -65,6 +69,16 @@ describe LocalDateTimeAttributes::LocalDateTime do
 
       it 'does not change the hour' do
         expect(subject.to_local.hour).to eql(now.hour)
+      end
+
+      it 'handles nil' do
+        expect(LocalDateTimeAttributes::LocalDateTime.new(nil).to_local).to be_nil
+      end
+
+      it 'returns nil when local_to_utc returns 0' do
+        subject
+        allow_any_instance_of(ActiveSupport::TimeZone).to receive(:local_to_utc).and_return(0)
+        expect(subject.to_local).to be_nil
       end
     end
   end
