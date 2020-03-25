@@ -1,5 +1,7 @@
 # LocalDateTimeAttributes
 
+![Ruby](https://github.com/Cisco-AMP/local_date_time_attributes/workflows/Ruby/badge.svg)
+
 Leverages the active_record attributes api to define a custom active_record type `local_date_time`. Normally, active_record will convert a Time,DateTime,Date which has a timezone into the active_record's base timezone - performing conversion of the time in the process. This custom attribute will ignore the timezone component of the `Time` attribute.
 
 Sometimes it is preferrable to ignore the timezone defined by [Time.zone](https://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html) before persisting or loading from persistence. In otherwords, the time_zone component is ignored prior to saving to the database and after loading from database
