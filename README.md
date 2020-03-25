@@ -1,6 +1,6 @@
 # LocalDateTimeAttributes
 
-![Ruby](https://github.com/Cisco-AMP/local_date_time_attributes/workflows/Ruby/badge.svg)![Ruby Gem](https://github.com/Cisco-AMP/local_date_time_attributes/workflows/Ruby%20Gem/badge.svg)
+![Ruby](https://github.com/Cisco-AMP/local_date_time_attributes/workflows/Ruby/badge.svg) ![Ruby Gem](https://github.com/Cisco-AMP/local_date_time_attributes/workflows/Ruby%20Gem/badge.svg)
 
 Leverages the active_record attributes api to define a custom active_record type `local_date_time`. Normally, active_record will convert a Time,DateTime,Date which has a timezone into the active_record's base timezone - performing conversion of the time in the process. This custom attribute will ignore the timezone component of the `Time` attribute.
 
