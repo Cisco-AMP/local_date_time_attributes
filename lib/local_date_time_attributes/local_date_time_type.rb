@@ -14,7 +14,7 @@ module LocalDateTimeAttributes
     end
 
     def deserialize(value)
-      cast(value).to_local
+      cast(value).try(:to_local)
     end
   end
 end

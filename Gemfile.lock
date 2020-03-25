@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     local_date_time_attributes (0.1.0)
-      activerecord
-      activesupport
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
 
 GEM
   remote: https://rubygems.org/
@@ -48,9 +48,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler
+  bundler (~> 2.0)
   local_date_time_attributes!
-  rake
+  rake (~> 13.0)
   rspec
   timecop
 

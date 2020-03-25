@@ -5,7 +5,6 @@ require 'active_support/time_with_zone'
 module LocalDateTimeAttributes
   class LocalDateTime < SimpleDelegator
     def initialize(date_time)
-      # We store underlying date_time in utc time. Use self.from_local_datetime instead
       super(from_local(date_time))
     end
 
