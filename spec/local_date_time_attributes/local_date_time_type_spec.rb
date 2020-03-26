@@ -22,14 +22,24 @@ describe LocalDateTimeAttributes::LocalDateTimeType do
     end
 
     it 'returns nil if value is nil' do
-      expect(subject.cast(nil)).to be_nil
+      expect(subject.cast(nil)).to eql(nil)
     end
+
+    it 'calls super if the value cannot be cast' do
+      object = Object.new
+      expect(subject.cast(object)).to eql(object)
+    end
+
   end
 
   describe '#serialize' do
     it 'returns the converted timestamp' do
       expect(local_date_time_double).to receive(:__getobj__).and_return(now)
       expect(subject.serialize(local_date_time_double)).to eql(now)
+    end
+
+    it 'returns nil if value is nil' do
+      expect(subject.serialize(nil)).to be_nil
     end
 
   end
@@ -40,5 +50,10 @@ describe LocalDateTimeAttributes::LocalDateTimeType do
       expect(local_date_time_double).to receive(:to_local).and_return(now)
       expect(subject.deserialize(local_date_time_double)).to eql(now)
     end
+
+    it 'returns nil if the value is nil' do
+      expect(subject.deserialize(nil)).to be_nil
+    end
+
   end
 end

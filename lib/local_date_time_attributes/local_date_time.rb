@@ -14,6 +14,10 @@ module LocalDateTimeAttributes
       converted_timestamp = ActiveSupport::TimeZone.new(time_zone).local_to_utc(__getobj__)
       converted_timestamp.in_time_zone(time_zone) if converted_timestamp.respond_to? :in_time_zone
     end
+
+    def nil?
+      __getobj__.nil?
+    end
     
     private
     
@@ -25,6 +29,6 @@ module LocalDateTimeAttributes
 
     def active_record_timezone
       ActiveRecord::Base.default_timezone == :UTC ? 'UTC' : Rails.configuration.time_zone
-    end
+    end    
   end
 end

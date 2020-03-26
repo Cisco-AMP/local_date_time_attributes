@@ -2,11 +2,8 @@ require 'active_record/type'
 module LocalDateTimeAttributes
   class LocalDateTimeType < ActiveRecord::Type::DateTime
     def cast(value)
-      if value.instance_of? LocalDateTime
-        return value
-      elsif !value.nil?
-        LocalDateTime.new(value)
-      end
+      return LocalDateTime.new(value) if value.acts_like?(:time) && !value.is_a?(LocalDateTime)
+      super(value)
     end
 
     def serialize(value)

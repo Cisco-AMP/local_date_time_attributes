@@ -12,6 +12,10 @@ describe LocalDateTimeAttributes::LocalDateTime do
     expect{LocalDateTimeAttributes::LocalDateTime.new(nil)}.to_not raise_exception
   end
 
+  it 'delegates nil?' do
+    expect(LocalDateTimeAttributes::LocalDateTime.new(nil).nil?).to eql(true)
+  end
+
   context 'active_record default timezone is UTC' do
     before do
       allow_any_instance_of(LocalDateTimeAttributes::LocalDateTime).to receive(:active_record_timezone).and_return('UTC')
